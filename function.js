@@ -22,5 +22,26 @@ console.log(add);
 //    const result = func(1,2);
 //    console.log(result);
 
-let my_fuction = add;
-console.log(add(10, 20);
+//let my_fuction = add;
+//console.log(add(10, 20);
+
+//1번: add라는 함수를 1,2라는 인자값을 전달해서 add라는 함수를 "호출=실행"
+add(1, 2)
+
+// 2번: add라는 함수 자체
+add
+console.log(add);//출력하는 코드
+// add 함수를 myFunction 변수에 할당 (함수 자체를 할당)
+let myFuction = add;
+//console.log(myFuction);
+myFuction(10,20);
+
+let a = 10;
+
+a + 20
+
+const myFuction = add;
+
+const result = myFuction(10,20)
+
+console.log(result);

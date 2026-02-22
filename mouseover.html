@@ -16,11 +16,34 @@
             box.style.color = "orange";
         })
 
+        function changeColor() {
+            box.style.color = "skyblue"; 
+            //함수 전달과 호출의 차이 
+            //함수를 넘긴다 changeColor라는 함수를 실행해
+        }
 
-
-
+        box.addEventListener("mouseover", changeColor());
+        box.addEventListener("mouseover", undefined);
+        //undefined()
         box.addEventListener("mouseout", function () => {
-            box.style.color = "black")
+            box.style.color = "black"
+        })
+
+        //언디파인드 changeColor
+        // print라는 새로운 함수 정의 
+        function print (message) {
+            console.log(message);
+            //return undefined
+        }
+// 1. 함수를 실행 foo()하면, 함수는 반드시 반황 (return)을 한다
+//1) 명시적으로 return하지 않으면, return undefined
+// 2.함수를 실행한 호출부에서 그 반환값을 돌려 받음
+
+//함수를 호출했을 때, 돌려 받을 수 있는 반환값의 종류 
+//1. 함수 안에서 return xxx -> xxx값
+//2. 함수 안에 return이 없으면 -> undefined
+        const printResult = print("hello");
+        console.log(printResult);
         
     </script>
 
