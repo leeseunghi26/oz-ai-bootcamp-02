@@ -1,0 +1,41 @@
+# services:
+#   api:
+#     build: .
+#     ports:
+#       -"80:8000"
+#     depends_on:
+#       - db
+#   db:
+#     image: mysql:8.0
+#     environment:
+#       MYSQL_ROOT_PASSWORD: 1234
+#       MYSQL_DATABASE: oz
+#     ports:
+#       -"33060:3306"
+
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "80:8000"  # 내 컴퓨터 80포트로 접속하면 도커 8000번으로 연결
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    # API 서버가 DB 연결 정보를 알 수 있도록 환경변수 추가 (추천)
+    environment:
+      DATABASE_URL: mysql+pymysql://root:1234@db:3306/oz
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: oz
+    ports:
+      - "33060:3306"
+    volumes:
+      - db_data: /var/lib/mysql #volumeName:containerPath:ro
+  volumes:
+    db_data:
