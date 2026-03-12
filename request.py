@@ -28,3 +28,9 @@ class LogInRequest(BaseModel):
     password: str
     # {id: 1, password: string, email: ...}
     # 전체 사용자 -> 비번 재설정 (26년까지)
+
+class HealthProfileCreateRequest(BaseModel):
+    height_cm: float
+    weight_kg: float
+    smoking: bool
+    exercise_per_week: int
