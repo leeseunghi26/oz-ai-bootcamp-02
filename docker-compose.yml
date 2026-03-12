@@ -17,14 +17,14 @@ version: '3.8'
 
 services:
   api:
-    build: .
+    build: ./api
     ports:
-      - "80:8000"  # 내 컴퓨터 80포트로 접속하면 도커 8000번으로 연결
+      - "80:8000"
     depends_on:
       - db
+      - redis
     volumes:
-      - .:/app
-    # API 서버가 DB 연결 정보를 알 수 있도록 환경변수 추가 (추천)
+      - ./api:/app
     environment:
       DATABASE_URL: mysql+pymysql://root:1234@db:3306/oz
 
@@ -36,6 +36,15 @@ services:
     ports:
       - "33060:3306"
     volumes:
-      - db_data: /var/lib/mysql #volumeName:containerPath:ro
-  volumes:
-    db_data:
+      - db_data:/var/lib/mysql  # 여기를 붙여쓰세요
+  worker:
+    build: ./worker
+    volumes:
+    - . /worker:/app
+    depends_on:
+      - redis
+  redis:
+    image: redis:8
+   
+volumes:
+  db_data:  # 이 줄이 services와 같은 레벨(맨 왼쪽)에 있어야 합니다.
